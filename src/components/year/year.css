@@ -1,0 +1,34 @@
+.year-header { 
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  color: #545450;
+}
+
+.year-header .current-year { 
+  font-size: 40px;
+}
+
+.year-switch { 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  font-size: 20px;
+  margin: 0 30px;
+  outline: none;
+  cursor: pointer;
+}
+.year-switch:hover {
+  background-color: lightgrey;
+}
+
+.year-main { 
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+}
