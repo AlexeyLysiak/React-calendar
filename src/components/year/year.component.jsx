@@ -1,44 +1,33 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import { Month } from '..';
 import './year.css'
 
 export default class YearComponent extends Component {
   
-  state =  {
-    currentYear: new Date().getFullYear(),
-  }
-
-  handleDecreaseYear = e => {
-    this.setState({
-      currentYear: this.state.currentYear - 1
-    })
-  }
-  handleIncreaseYear = e => {
-    this.setState({
-      currentYear: this.state.currentYear + 1
-    })
-  }
-
-
   render() {
 
-    const months = Array(12).fill(null).map((x, index) => {
-      return (
-        <Month startDate={new Date(this.state.currentYear, index, 1)} />
-      )
-    })
+    const months = Array(12).fill(null).map((x, index) => new Date(this.props.year, index, 1));
 
     return (
       <div className='calendar'>
 
         <div className='year-header'>
-          <button className='year-switch' onClick={this.handleDecreaseYear}>-</button>
-          <span className='current-year'>{this.state.currentYear}</span>
-          <button className='year-switch' onClick={this.handleIncreaseYear}>+</button>
+          <Link className='link-btn' to={`/year/${this.props.year - 1}`}>
+            <button className='year-switch'>-</button>
+          </Link>
+          
+          <span className='current-year'>{this.props.year}</span>
+          
+          <Link className='link-btn' to={`/year/${Number(this.props.year) + 1}`}>
+            <button className='year-switch'>+</button>
+          </Link>
         </div>
         
         <div className='year-main'>
-          { months }
+          { months.map(startDate => (
+            <Month key={startDate.toISOString()} startDate={startDate} />
+          )) }
         </div>
 
       </div>
